@@ -565,7 +565,7 @@
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Our Products, Stores, Reviews and Categories APIs can be searched by nearly all available attributes. For example, to find only the stores located in Utah, you can use the query shown to the right.</p>
+<p>Our Products, Stores and Categories APIs can be searched by nearly all available attributes. For example, to find only the stores located in Utah, you can use the query shown to the right.</p>
 
 <h2 id="search-by-all-attributes-and">Search by all attributes (AND)</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.bestbuy.com/v1/products(manufacturer=canon&amp;salePrice&lt;1000)?format=json&amp;show=sku,name,salePrice&amp;apiKey=YourAPIKey'</span>
@@ -770,6 +770,10 @@
 </span></code></pre>
 
 <p>If you want multiple values of a single attribute, you can specify them individually. For example, if you want to see white, bisque, or stainless-steel side-by-side refrigerators, use this query.</p>
+
+<p><em>NOTE: To search for products based on a list of attribute values, we recommend using the <code class="prettyprint">in</code> operator. Most attributes can be used with the <code class="prettyprint">in</code> operator. The most common attribute used is <code class="prettyprint">SKU</code>. Using the <code class="prettyprint">in</code> operator helps to avoid Query Per Second errors (QPS).</em> </p>
+
+<p><em>For example: <code class="prettyprint">http://api.bestbuy.com/v1/products(sku in(43900,2088495,7150065))?apiKey=YourAPIKey</code></em></p>
 
 <h2 id="wildcards-value-is-present">Wildcards - Value is present</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.bestbuy.com/v1/products(categoryPath.id=abcat0502000&amp;driveCapacityGb=*)?format=json&amp;show=sku,name,salePrice&amp;apiKey=YourAPIKey"</span>
